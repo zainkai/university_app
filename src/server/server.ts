@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
+import { dbController } from './db/dbController';
 
 const app = express();
 const server = (http as any).Server(app);

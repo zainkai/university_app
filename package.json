@@ -1,6 +1,6 @@
 {
   "name": "university_app",
-  "author":"Kevin Turkington",
+  "author": "Kevin Turkington",
   "description": "CS340 final project",
   "version": "0.0.11",
   "dependencies": {
@@ -8,9 +8,10 @@
     "@types/node": "^8.0.32",
     "@types/react": "^16.0.9",
     "@types/react-dom": "^16.0.0",
-    "react-dom": "16.0.0",
-    "react": "16.0.0",
+    "ejs": "^2.5.7",
     "express": "^4.15.3",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
   },
@@ -24,7 +25,6 @@
     "build-all": "npm run build-client && npm run build-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "production": "~/cs340/example/diagnostic/node_modules/forever/bin/forever start ./build/server.js 5031",
-    "production-stop":"~/cs340/example/diagnostic/node_modules/forever/bin/forever stop ./build/server.js 5031"
-
+    "production-stop": "~/cs340/example/diagnostic/node_modules/forever/bin/forever stop ./build/server.js 5031"
   }
 }

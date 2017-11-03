@@ -4,6 +4,7 @@
       "sourceMap": true,
       "jsx": "react",
       "outDir": "../../public/js",
+      "strictNullChecks": true,
       "strict": true
     },
     "include": [

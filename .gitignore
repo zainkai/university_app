@@ -6,8 +6,8 @@
 # testing
 /coverage
 
-#development
-/src/server/db/dbcon-dev.ts
+#protected
+/src/server/db/protected/
 
 # production
 /build

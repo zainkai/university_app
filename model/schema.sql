@@ -1,16 +1,16 @@
-CREATE TABLE `uni_building` (
+CREATE TABLE `uni_department` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL, 
     `description` TEXT,
     CONSTRAINT UNIQUE (`name`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `uni_department` (
+CREATE TABLE `uni_building` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `buildingid` INT NOT NULL,
+    `departmentid` INT NOT NULL,
     `name` VARCHAR(255) NOT NULL, 
     `description` TEXT,
-    FOREIGN KEY(`buildingid`) REFERENCES `uni_building`(`id`),
+    FOREIGN KEY(`departmentid`) REFERENCES `uni_department`(`id`),
     CONSTRAINT UNIQUE (`name`)
 ) ENGINE=InnoDB;
 
@@ -27,7 +27,7 @@ CREATE TABLE `uni_class` (
 
 CREATE TABLE `uni_student` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL
+    `firstname` VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE `uni_class_enrollment` (

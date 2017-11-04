@@ -21,3 +21,4 @@ INSERT INTO uni_building (departmentid,name,description) values (
     "austin",
     "that one building next to linc"    
 );
+

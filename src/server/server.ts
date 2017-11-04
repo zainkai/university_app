@@ -21,9 +21,24 @@ app.get('/', (req, res, next) => {
     res.render('index.html');
 });
 
+app.post('/department/insert', (req, res, next) => {
+    const incData:dbm.IDepartments = {...req.body};
+
+    //error checking
+    if (typeof(incData.name) === 'undefined'){
+        return res.status(400).json({'error':'invalid data recieved'});
+    }
+
+    //do insert
+
+    // return results
+    dbControl.getDepartments().then( data => {
+        res.json(data);
+    });
+});
+
 app.post('/department', (req, res, next) => {
     dbControl.getDepartments().then( data => {
-        console.log(data);
         res.json(data);
     });
 });
@@ -37,3 +52,4 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3000;
 server.listen(port);
 console.log("server running at http://localhost:" + port);
+console.log("  Press CTRL-C to stop\n");

@@ -4,9 +4,12 @@ import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import { dbController } from './db/dbController';
 import { pool } from './db/protected/dbcon-dev';
+import * as dbm from './db/dbModels';
 
 const app = express();
 const server = (http as any).Server(app);
+
+const dbControl = new dbController(pool);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,6 +19,13 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res, next) => {
     res.render('index.html');
+});
+
+app.post('/department', (req, res, next) => {
+    dbControl.getDepartments().then( data => {
+        console.log(data);
+        res.json(data);
+    });
 });
 
 app.get('*', (req, res) => {

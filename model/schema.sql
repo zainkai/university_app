@@ -40,3 +40,5 @@ CREATE TABLE `uni_class_enrollment` (
     FOREIGN KEY(`classid`) REFERENCES `uni_class`(`id`)
 ) ENGINE=InnoDB;
 
+INSERT INTO uni_department (name,description) values ('computer_science','computer students only.');
+INSERT INTO uni_department (name,description) values ('mechanical','mech students only.');

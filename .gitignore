@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+#development
+/src/server/db/dbcon-dev.ts
+
 # production
 /build
 /public/js

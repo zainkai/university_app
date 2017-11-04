@@ -27,7 +27,9 @@ CREATE TABLE `uni_class` (
 
 CREATE TABLE `uni_student` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `firstname` VARCHAR(255) NOT NULL
+    `firstname` VARCHAR(255) NOT NULL,
+    `lastname` VARCHAR(255) NOT NULL,
+    CONSTRAINT `fullname` UNIQUE (`firstname`,`lastname`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `uni_class_enrollment` (

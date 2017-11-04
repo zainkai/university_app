@@ -33,15 +33,11 @@ app.post('/department/insert', (req, res, next) => {
     //do insert
 
     // return results
-    dbControl.getDepartments().then( data => {
-        res.json(data);
-    });
+    dbControl.getDepartments().then( data => res.json(data));
 });
 
 app.post('/department', (req, res, next) => {
-    dbControl.getDepartments().then( data => {
-        res.json(data);
-    });
+    dbControl.getDepartments().then( data => res.json(data));
 });
 
 app.get('*', (req, res) => {

@@ -3,7 +3,7 @@ import * as http from 'http';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import { dbController } from './db/dbController';
-import { pool } from './db/dbcon-dev';
+import { pool } from './db/protected/dbcon-dev';
 
 const app = express();
 const server = (http as any).Server(app);

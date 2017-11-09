@@ -33,6 +33,7 @@ export class dbBuilding{
 
     cleanInput(token:any) {
         if(typeof(token) === 'string'){
+            token = token.toLocaleLowerCase();
             token = token.replace(/ /g,"_");
         }
         return mysql.escape(token);

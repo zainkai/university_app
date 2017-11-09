@@ -29,12 +29,26 @@ export class dbDepartment {
     }
 
     cleanInput(token:string) {
+        token = token.replace(/ /g,"_");
         return mysql.escape(token);
     }
 
     getDepartments(){
         return new Promise<dbm.IDepartment[]>((resolve,reject) => {
-            const funcQuery = "SELECT * FROM uni_department";
+            const funcQuery = `SELECT * FROM uni_department`;
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
+    addDepartment(data:dbm.IDepartment) {
+        return new Promise<void>((resolve,reject) => {
+            const funcQuery = `
+            INSERT INTO uni_department (name,description) 
+            values (${this.cleanInput(data.name)},${this.cleanInput(data.description || "")});
+            `;
+            
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });

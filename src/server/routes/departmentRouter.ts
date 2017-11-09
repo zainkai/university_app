@@ -17,10 +17,10 @@ departmentRouter.post('/add', (req, res, next) => {
     if (typeof(incData.name) === 'undefined'){
         return res.status(400).json({'error':'invalid data recieved'});
     }
-    incData.name = incData.name.replace(/ /g,"_");//important regex
 
     //do insert
-
-    // return results
-    dbControl.getDepartments().then( data => res.json(data));
+    dbControl.addDepartment(incData)
+    .then( () =>
+    dbControl.getDepartments()
+    .then( data => res.json(data)));
 });

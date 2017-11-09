@@ -5,7 +5,7 @@ export interface IDepartment {
 };
 
 export interface IBuilding {
-    id: number,
+    id?: number,
     departmentId:number,//not null
     name:string,//not null & unique
     description?:string,

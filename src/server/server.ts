@@ -4,8 +4,8 @@ import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import { dbController } from './db/dbController';
 import { pool } from './db/protected/dbcon-dev';
-import * as dbm from './db/dbModels';
-import { departmentRouter } from './routes/departmentRouter'
+import { departmentRouter } from './routes/departmentRouter';
+import { buildingRouter } from './routes/buildingRouter';
 
 const app = express();
 const server = (http as any).Server(app);
@@ -19,6 +19,7 @@ app.engine('html', require('ejs').renderFile);
 
 //use routes
 app.use('/department',departmentRouter);
+app.use('/building',buildingRouter);
 
 app.get('/', (req, res, next) => {
     res.render('index.html');

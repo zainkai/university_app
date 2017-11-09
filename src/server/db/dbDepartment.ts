@@ -33,7 +33,7 @@ export class dbDepartment {
     }
 
     getDepartments(){
-        return new Promise<dbm.IDepartments[]>((resolve,reject) => {
+        return new Promise<dbm.IDepartment[]>((resolve,reject) => {
             const funcQuery = "SELECT * FROM uni_department";
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);

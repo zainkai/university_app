@@ -11,7 +11,7 @@ departmentRouter.post('/', (req, res, next) => {
 });
 
 departmentRouter.post('/add', (req, res, next) => {
-    const incData:dbm.IDepartments = {...req.body};
+    const incData:dbm.IDepartment = {...req.body};
 
     //error checking
     if (typeof(incData.name) === 'undefined'){

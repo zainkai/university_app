@@ -11,17 +11,17 @@ buildingRouter.post('/', (req, res, next) => {
     dbControl.getBuildings().then( data => res.json(data));
 });
 
-buildingRouter.post('/add', (req, res, next) => {
-    const incData:dbm.IBuildings = {...req.body};
+// buildingRouter.post('/add', (req, res, next) => {
+//     const incData:dbm.IBuildings = {...req.body};
 
-    //error checking
-    if (typeof(incData.name) === 'undefined'){
-        return res.status(400).json({'error':'invalid data recieved'});
-    }
-    incData.name = incData.name.replace(/ /g,"_");//important regex
+//     //error checking
+//     if (typeof(incData.name) === 'undefined'){
+//         return res.status(400).json({'error':'invalid data recieved'});
+//     }
+//     incData.name = incData.name.replace(/ /g,"_");//important regex
 
-    //do insert
+//     //do insert
 
-    // return results
-    dbControl.getBuildings().then( data => res.json(data));
-});
+//     // return results
+//     dbControl.getBuildings().then( data => res.json(data));
+// });

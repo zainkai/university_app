@@ -1,10 +1,10 @@
-export interface IDepartments {
+export interface IDepartment {
     id?: number,
     name: string, //not null & unique
     description?: string
 };
 
-export interface IBuildings {
+export interface IBuilding {
     id: number,
     departmentId:number,//not null
     name:string,//not null & unique

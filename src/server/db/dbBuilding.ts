@@ -1,6 +1,10 @@
 import * as mysql from 'mysql';
 import * as dbm from './dbModels';
 
+interface IBuildingsView extends dbm.IBuilding {
+    departmentName:string;
+};
+
 export class dbBuilding{
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){
@@ -32,12 +36,20 @@ export class dbBuilding{
     }
 
     getBuildings(){
-        return new Promise<dbm.IBuildings[]>((resolve,reject) => {
-            const funcQuery = "SELECT * FROM uni_building";
+        return new Promise<IBuildingsView[]>((resolve,reject) => {
+            const funcQuery = `
+            SELECT b.id, b.departmentid, b.name, b.description, d.name AS departmentName
+                FROM uni_building b
+                INNER JOIN uni_department d ON b.departmentid=d.id    
+            `;
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
         });
+    }
+
+    addBuilding(data:dbm.IBuilding){
+
     }
 
 }

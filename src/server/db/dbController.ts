@@ -1,7 +1,7 @@
 import * as mysql from 'mysql';
 import * as dbm from './dbModels';
 
-//generic DB controller
+//Admin controls will go here. Like drop and reload tables, etc,etc
 export class dbController {
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){

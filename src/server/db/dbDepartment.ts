@@ -28,8 +28,10 @@ export class dbDepartment {
         });
     }
 
-    cleanInput(token:string) {
-        token = token.replace(/ /g,"_");
+    cleanInput(token:any) {
+        if(typeof(token) === 'string'){
+            token = token.replace(/ /g,"_");
+        }
         return mysql.escape(token);
     }
 

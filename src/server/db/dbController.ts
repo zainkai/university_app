@@ -29,7 +29,10 @@ export class dbController {
         });
     }
 
-    cleanInput(token:string) {
+    cleanInput(token:any) {
+        if(typeof(token) === 'string'){
+            token = token.replace(/ /g,"_");
+        }
         return mysql.escape(token);
-    }  
+    } 
 }

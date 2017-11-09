@@ -31,8 +31,10 @@ export class dbBuilding{
         });
     }
 
-    cleanInput(token:string) {
-        token = token.replace(/ /g,"_");
+    cleanInput(token:any) {
+        if(typeof(token) === 'string'){
+            token = token.replace(/ /g,"_");
+        }
         return mysql.escape(token);
     }
 
@@ -54,7 +56,8 @@ export class dbBuilding{
             const funcQuery = `
             INSERT INTO uni_building (name,description,departmentid) 
                 values (${this.cleanInput(data.name)},
-                        ${this.cleanInput(data.description || "")}
+                        ${this.cleanInput(data.description || "")},
+                        ${this.cleanInput(data.departmentid)}
                 );
             `;
 

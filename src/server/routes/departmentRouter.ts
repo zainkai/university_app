@@ -14,7 +14,7 @@ departmentRouter.post('/add', (req, res, next) => {
     const incData:dbm.IDepartment = {...req.body};
 
     //error checking
-    if (typeof(incData.name) === 'undefined'){
+    if (typeof(incData.name) !== 'string'){
         return res.status(400).json({'error':'invalid data recieved'});
     }
 

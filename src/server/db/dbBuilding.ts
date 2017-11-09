@@ -32,6 +32,7 @@ export class dbBuilding{
     }
 
     cleanInput(token:string) {
+        token = token.replace(/ /g,"_");
         return mysql.escape(token);
     }
 
@@ -49,7 +50,18 @@ export class dbBuilding{
     }
 
     addBuilding(data:dbm.IBuilding){
+        return new Promise<void>((resolve,reject) => {
+            const funcQuery = `
+            INSERT INTO uni_building (name,description,departmentid) 
+                values (${this.cleanInput(data.name)},
+                        ${this.cleanInput(data.description || "")}
+                );
+            `;
 
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result);
+            });
+        });
     }
 
 }

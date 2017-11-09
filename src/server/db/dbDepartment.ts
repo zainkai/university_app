@@ -1,12 +1,11 @@
 import * as mysql from 'mysql';
 import * as dbm from './dbModels';
 
-//generic DB controller
-export class dbController {
+export class dbDepartment {
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){
         this.pool = dbPool;
-        this.dbConnect();
+        //this.dbConnect();
     }
 
     dbConnect(){
@@ -31,5 +30,15 @@ export class dbController {
 
     cleanInput(token:string) {
         return mysql.escape(token);
-    }  
+    }
+
+    getDepartments(){
+        return new Promise<dbm.IDepartments[]>((resolve,reject) => {
+            const funcQuery = "SELECT * FROM uni_department";
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
 }

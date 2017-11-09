@@ -1,9 +1,9 @@
--- initialize department tabel
+-- initialize department table
 INSERT INTO uni_department (name,description) values ('computer_science','everything and anything binary');
 INSERT INTO uni_department (name,description) values ('mechanical','tons of physics and math');
 INSERT INTO uni_department (name,description) values ('buisness','fallback majors');
 
--- initialize buildings tabel
+-- initialize buildings table
 INSERT INTO uni_building (departmentid,name,description) values (
     (SELECT id FROM uni_department WHERE name='computer_science'),
     "kelly",

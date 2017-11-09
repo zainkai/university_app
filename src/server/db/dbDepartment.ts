@@ -46,9 +46,11 @@ export class dbDepartment {
         return new Promise<void>((resolve,reject) => {
             const funcQuery = `
             INSERT INTO uni_department (name,description) 
-            values (${this.cleanInput(data.name)},${this.cleanInput(data.description || "")});
+                values (${this.cleanInput(data.name)},
+                        ${this.cleanInput(data.description || "")}
+                );
             `;
-            
+
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });

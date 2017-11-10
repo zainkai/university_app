@@ -63,7 +63,7 @@ export class dbDepartment {
         const funcQuery = `
         INSERT INTO uni_department (name,description) 
             values (${this.cleanInput(data.name)},
-                    ${this.cleanInput(data.description || "")}
+                    ${this.cleanInput(data.description || null)}
             );
         `;
 

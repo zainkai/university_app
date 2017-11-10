@@ -69,7 +69,7 @@ export class dbBuilding{
         const funcQuery = `
         INSERT INTO uni_building (name,description,departmentid) 
             values (${this.cleanInput(data.name)},
-                    ${this.cleanInput(data.description || "")},
+                    ${this.cleanInput(data.description || null)},
                     ${this.cleanInput(data.departmentid)}
             );
         `;

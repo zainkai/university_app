@@ -1,6 +1,5 @@
 import * as mysql from 'mysql';
-import * as dbm from '../models/dbModels';
-import { resolve } from 'dns';
+import * as dbm from '../models/dbModel';
 
 export class dbDepartment {
     pool:mysql.Pool;

@@ -2,7 +2,7 @@ import * as express from 'express';
 import { dbDepartment } from '../db/dbDepartment';
 import { dbBuilding} from '../db/dbBuilding';
 import { pool } from '../db/protected/dbcon-dev';
-import * as dbm from '../models/dbModels';
+import * as dbm from '../models/dbModel';
 
 export const buildingRouter = express();
 const dbControl = new dbBuilding(pool);//exclusive to departments router

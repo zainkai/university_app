@@ -1,12 +1,10 @@
 import * as mysql from 'mysql';
 import * as dbm from '../models/dbModel';
 
-//Admin controls will go here. Like drop and reload tables, etc,etc
-export class dbController {
+export class dbClass {
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){
         this.pool = dbPool;
-        this.dbConnect();
     }
 
     dbConnect(){
@@ -31,8 +29,9 @@ export class dbController {
 
     cleanInput(token:any) {
         if(typeof(token) === 'string'){
+            token = token.toLocaleLowerCase();
             token = token.replace(/ /g,"_");
         }
         return mysql.escape(token);
-    } 
+    }
 }

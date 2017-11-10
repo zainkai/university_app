@@ -56,6 +56,9 @@ export class dbClass {
         });
     }
 
+    // TODO: links for date formatting issue
+    //https://www.npmjs.com/package/dateformat
+    //https://www.npmjs.com/package/@types/dateformat
     getClasses() {
         const funcQuery = `
         SELECT c.id, c.name, 

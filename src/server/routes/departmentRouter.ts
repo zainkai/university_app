@@ -20,7 +20,7 @@ departmentRouter.post('/add', (req, res, next) => {
 
     //do insert
     dbControl.addDepartment(incData)
-    .then( () =>
-    dbControl.getDepartments()
+    .then( (id) =>
+    dbControl.getDepartment(id)
     .then( data => res.json(data)));
 });

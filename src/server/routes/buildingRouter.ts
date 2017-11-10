@@ -22,7 +22,7 @@ buildingRouter.post('/add', (req, res, next) => {
 
     //do insert
     dbControl.addBuilding(incData)
-    .then( () =>
-    dbControl.getBuildings()
+    .then( (id) =>
+    dbControl.getBuilding(id)
     .then( data => res.json(data)));
 });

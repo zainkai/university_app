@@ -1,5 +1,6 @@
 import * as mysql from 'mysql';
 import * as dbm from './dbModels';
+import { resolve } from 'dns';
 
 export class dbDepartment {
     pool:mysql.Pool;
@@ -37,25 +38,39 @@ export class dbDepartment {
     }
 
     getDepartments(){
+        const funcQuery = `SELECT * FROM uni_department`;
+
         return new Promise<dbm.IDepartment[]>((resolve,reject) => {
-            const funcQuery = `SELECT * FROM uni_department`;
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
         });
     }
 
-    addDepartment(data:dbm.IDepartment) {
-        return new Promise<void>((resolve,reject) => {
-            const funcQuery = `
-            INSERT INTO uni_department (name,description) 
-                values (${this.cleanInput(data.name)},
-                        ${this.cleanInput(data.description || "")}
-                );
-            `;
+    getDepartment(id:number){
+        const funcQuery = `
+        SELECT * FROM uni_department
+        WHERE id=${this.cleanInput(id)}
+        `;
 
-            this.pool.query(funcQuery, (err,result,fields) => {
+        return new Promise<dbm.IDepartment>((resolve,reject) => {
+            this.pool.query(funcQuery,(err,result,fields) =>{
                 err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
+    addDepartment(data:dbm.IDepartment) {
+        const funcQuery = `
+        INSERT INTO uni_department (name,description) 
+            values (${this.cleanInput(data.name)},
+                    ${this.cleanInput(data.description || "")}
+            );
+        `;
+
+        return new Promise<number>((resolve,reject) => {
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result.insertId);
             });
         });
     }

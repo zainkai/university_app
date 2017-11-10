@@ -39,13 +39,29 @@ export class dbBuilding{
         return mysql.escape(token);
     }
 
-    getBuildings(){
+    getBuilding(id:number){
+        const funcQuery = `
+        SELECT b.id, b.departmentid, b.name, b.description, d.name AS departmentName
+            FROM uni_building b
+            INNER JOIN uni_department d ON b.departmentid=d.id    
+        WHERE b.id=${this.cleanInput(id)}
+        `;
+
         return new Promise<IBuildingsView[]>((resolve,reject) => {
-            const funcQuery = `
-            SELECT b.id, b.departmentid, b.name, b.description, d.name AS departmentName
-                FROM uni_building b
-                INNER JOIN uni_department d ON b.departmentid=d.id    
-            `;
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
+    getBuildings(){
+        const funcQuery = `
+        SELECT b.id, b.departmentid, b.name, b.description, d.name AS departmentName
+            FROM uni_building b
+            INNER JOIN uni_department d ON b.departmentid=d.id    
+        `;
+
+        return new Promise<IBuildingsView[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
@@ -53,17 +69,17 @@ export class dbBuilding{
     }
 
     addBuilding(data:dbm.IBuilding){
-        return new Promise<void>((resolve,reject) => {
-            const funcQuery = `
-            INSERT INTO uni_building (name,description,departmentid) 
-                values (${this.cleanInput(data.name)},
-                        ${this.cleanInput(data.description || "")},
-                        ${this.cleanInput(data.departmentid)}
-                );
-            `;
+        const funcQuery = `
+        INSERT INTO uni_building (name,description,departmentid) 
+            values (${this.cleanInput(data.name)},
+                    ${this.cleanInput(data.description || "")},
+                    ${this.cleanInput(data.departmentid)}
+            );
+        `;
 
+        return new Promise<number>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
-                err ? reject(err) : resolve(result);
+                err ? reject(err) : resolve(result.insertId);
             });
         });
     }

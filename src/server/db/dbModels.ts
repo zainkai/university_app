@@ -10,3 +10,7 @@ export interface IBuilding {
     name:string,//not null & unique
     description?:string,
 };
+
+export interface IdRequest{
+    id:number
+}

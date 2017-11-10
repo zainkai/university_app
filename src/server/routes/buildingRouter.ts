@@ -11,6 +11,11 @@ buildingRouter.post('/', (req, res, next) => {
     dbControl.getBuildings().then( data => res.json(data));
 });
 
+buildingRouter.post('/get', (req, res, next) => {
+    const incData:dbm.IdRequest = {...req.body};
+    dbControl.getBuilding(incData.id).then( data => res.json(data));
+});
+
 buildingRouter.post('/add', (req, res, next) => {
     const incData:dbm.IBuilding = {...req.body};
 

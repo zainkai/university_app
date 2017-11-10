@@ -10,6 +10,11 @@ departmentRouter.post('/', (req, res, next) => {
     dbControl.getDepartments().then( data => res.json(data));
 });
 
+departmentRouter.post('/get', (req, res, next) => {
+    const incData:dbm.IdRequest = {...req.body};
+    dbControl.getDepartment(incData.id).then( data => res.json(data));
+});
+
 departmentRouter.post('/add', (req, res, next) => {
     const incData:dbm.IDepartment = {...req.body};
 

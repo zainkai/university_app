@@ -3,6 +3,7 @@ import { dbDepartment } from '../db/dbDepartment';
 import { dbBuilding} from '../db/dbBuilding';
 import { pool } from '../db/protected/dbcon-dev';
 import * as dbm from '../models/dbModel';
+import * as APIModel from '../models/APIModel';
 
 export const buildingRouter = express();
 const dbControl = new dbBuilding(pool);//exclusive to departments router
@@ -12,7 +13,7 @@ buildingRouter.post('/', (req, res, next) => {
 });
 
 buildingRouter.post('/get', (req, res, next) => {
-    const incData:dbm.IdRequest = {...req.body};
+    const incData:APIModel.IdRequest = {...req.body};
     dbControl.getBuilding(incData.id).then( data => res.json(data));
 });
 

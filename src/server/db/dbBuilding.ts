@@ -1,9 +1,6 @@
 import * as mysql from 'mysql';
 import * as dbm from '../models/dbModel';
-
-interface IBuildingsView extends dbm.IBuilding {
-    departmentName:string;
-};
+import * as APIModel from '../models/APIModel';
 
 export class dbBuilding{
     pool:mysql.Pool;
@@ -47,7 +44,7 @@ export class dbBuilding{
         WHERE b.id=${this.cleanInput(id)}
         `;
 
-        return new Promise<IBuildingsView[]>((resolve,reject) => {
+        return new Promise<APIModel.IBuildingsView[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
@@ -61,7 +58,7 @@ export class dbBuilding{
             INNER JOIN uni_department d ON b.departmentid=d.id    
         `;
 
-        return new Promise<IBuildingsView[]>((resolve,reject) => {
+        return new Promise<APIModel.IBuildingsView[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });

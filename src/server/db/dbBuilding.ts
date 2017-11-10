@@ -1,5 +1,5 @@
 import * as mysql from 'mysql';
-import * as dbm from './dbModels';
+import * as dbm from '../models/dbModels';
 
 interface IBuildingsView extends dbm.IBuilding {
     departmentName:string;

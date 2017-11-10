@@ -1,5 +1,5 @@
 import * as mysql from 'mysql';
-import * as dbm from './dbModels';
+import * as dbm from '../models/dbModels';
 import { resolve } from 'dns';
 
 export class dbDepartment {

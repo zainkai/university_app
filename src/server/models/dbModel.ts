@@ -11,6 +11,11 @@ export interface IBuilding {
     description?:string,
 };
 
-export interface IdRequest{
-    id:number
+export interface IClass {
+    id?:number,
+    name:string,
+    starttime:string,
+    endtime:string,
+    buildingid:number,
+    departmentid:number
 }

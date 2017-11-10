@@ -44,7 +44,7 @@ export class dbBuilding{
         WHERE b.id=${this.cleanInput(id)}
         `;
 
-        return new Promise<APIModel.IBuildingsView[]>((resolve,reject) => {
+        return new Promise<APIModel.IBuildingsView>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });

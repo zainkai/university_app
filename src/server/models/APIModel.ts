@@ -7,3 +7,8 @@ export interface IBuildingsView extends dbm.IBuilding {
 export interface IdRequest{
     id:number
 }
+
+export interface IClassView extends dbm.IClass {
+    departmentName:string;
+    buildingName:string;
+}

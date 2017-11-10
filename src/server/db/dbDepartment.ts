@@ -36,16 +36,6 @@ export class dbDepartment {
         return mysql.escape(token);
     }
 
-    getDepartments(){
-        const funcQuery = `SELECT * FROM uni_department`;
-
-        return new Promise<dbm.IDepartment[]>((resolve,reject) => {
-            this.pool.query(funcQuery, (err,result,fields) => {
-                err ? reject(err) : resolve(result);
-            });
-        });
-    }
-
     getDepartment(id:number){
         const funcQuery = `
         SELECT * FROM uni_department
@@ -54,6 +44,16 @@ export class dbDepartment {
 
         return new Promise<dbm.IDepartment>((resolve,reject) => {
             this.pool.query(funcQuery,(err,result,fields) =>{
+                err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
+    getDepartments(){
+        const funcQuery = `SELECT * FROM uni_department`;
+
+        return new Promise<dbm.IDepartment[]>((resolve,reject) => {
+            this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
         });

@@ -47,3 +47,24 @@ INSERT INTO uni_class (departmentid,buildingid,name,starttime,endtime) values(
     '13:50:00'
 );
 
+--initialize student table
+INSERT INTO uni_student (firstname,lastname) values('kevin','turkington');
+INSERT INTO uni_student (firstname,lastname) values('john','doe');
+INSERT INTO uni_student (firstname,lastname) values('jane','doe');
+
+--initialize class enrollment table
+INSERT INTO uni_class_enrollment (studentid,classid) values(
+    (SELECT id FROM uni_student WHERE firstname='kevin' and lastname='turkington'),
+    (SELECT id FROM uni_class WHERE name='computer_science')
+);
+
+INSERT INTO uni_class_enrollment (studentid,classid) values(
+    (SELECT id FROM uni_student WHERE firstname='john' and lastname='doe'),
+    (SELECT id FROM uni_class WHERE name='buisness')
+);
+
+INSERT INTO uni_class_enrollment (studentid,classid) values(
+    (SELECT id FROM uni_student WHERE firstname='jane' and lastname='doe'),
+    (SELECT id FROM uni_class WHERE name='mechanical')
+);
+

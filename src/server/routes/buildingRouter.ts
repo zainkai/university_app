@@ -32,3 +32,7 @@ buildingRouter.post('/add', (req, res, next) => {
     dbControl.getBuilding(id)
     .then( data => res.json(data)));
 });
+
+buildingRouter.post('/options',(req,res,next) =>{
+    dbControl.listBuildingOptions().then(data => res.json(data));
+});

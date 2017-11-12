@@ -30,3 +30,7 @@ departmentRouter.post('/add', (req, res, next) => {
     dbControl.getDepartment(id)
     .then( data => res.json(data)));
 });
+
+departmentRouter.post('/options',(req,res,next) => {
+    dbControl.listDepartmentOptions().then( data => res.json(data));
+});

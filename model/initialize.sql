@@ -55,16 +55,16 @@ INSERT INTO uni_student (firstname,lastname) values('jane','doe');
 --initialize class enrollment table
 INSERT INTO uni_class_enrollment (studentid,classid) values(
     (SELECT id FROM uni_student WHERE firstname='kevin' and lastname='turkington'),
-    (SELECT id FROM uni_class WHERE name='computer_science')
+    (SELECT id FROM uni_class WHERE name='intro_to_databases')
 );
 
 INSERT INTO uni_class_enrollment (studentid,classid) values(
     (SELECT id FROM uni_student WHERE firstname='john' and lastname='doe'),
-    (SELECT id FROM uni_class WHERE name='buisness')
+    (SELECT id FROM uni_class WHERE name='microeconomics')
 );
 
 INSERT INTO uni_class_enrollment (studentid,classid) values(
     (SELECT id FROM uni_student WHERE firstname='jane' and lastname='doe'),
-    (SELECT id FROM uni_class WHERE name='mechanical')
+    (SELECT id FROM uni_class WHERE name='heat_transfer')
 );
 

@@ -95,4 +95,14 @@ export class dbClass {
             });
         });
     }
+
+    listClassOptions(){
+        const funcQuery = `SELECT id,name FROM uni_class`;
+        
+        return new Promise<APIModel.ClassOptions>((resolve,reject) => {
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result.insertId);
+            });
+        });
+    }
 }

@@ -1,5 +1,6 @@
 import * as mysql from 'mysql';
 import * as dbm from '../models/dbModel';
+import * as APIModel from '../models/APIModel';
 
 export class dbDepartment {
     pool:mysql.Pool;
@@ -68,6 +69,16 @@ export class dbDepartment {
         `;
 
         return new Promise<number>((resolve,reject) => {
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result.insertId);
+            });
+        });
+    }
+
+    listDepartmentOptions(){
+        const funcQuery =`SELECT id,name FROM uni_department`;
+
+        return new Promise<APIModel.DepartmentOptions>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result.insertId);
             });

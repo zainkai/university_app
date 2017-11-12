@@ -80,9 +80,11 @@ export class dbStudent {
             SET firstname=${this.cleanInput(target.firstname)},
                 lastname=${this.cleanInput(target.lastname)}
         WHERE id=${this.cleanInput(target.id)}`;
+
+
     }
 
     deleteStudent(target: dbm.IStudent){
-
+        const funcQuery =`DELETE FROM uni_student WHERE id=${this.cleanInput(target.id)}`;
     }
 }

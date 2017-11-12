@@ -2,7 +2,7 @@ import * as mysql from 'mysql';
 import * as dbm from '../models/dbModel';
 import * as APIModel from '../models/APIModel';
 
-export class dbStudent {
+export class dbClass {
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){
         this.pool = dbPool;
@@ -36,35 +36,47 @@ export class dbStudent {
         return mysql.escape(token);
     }
 
-    getStudent(id:number){
+    getClassEnrollment(studentid:number){
         const funcQuery = `
-        SELECT * FROM uni_student
-        WHERE id=${this.cleanInput(id)}
+        SELECT ce.studentid AS studentid, ce.classid AS classid,
+            s.firstname AS studentFirstName, s.lastname AS studentLastName,
+            c.name AS className,ce.id AS id
+        FROM uni_class_enrollment ce
+            INNER JOIN uni_class c ON ce.classid=c.id
+            INNER JOIN uni_student s ON ce.studentid=s.id
+        WHERE s.id=${this.cleanInput(studentid)}
         `;
 
-        return new Promise<APIModel.IStudentView>((resolve,reject) => {
+        return new Promise<APIModel.IClassEnrollmentView[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });
         });
     }
 
-    getStudents(){
-        const funcQuery = `SELECT * FROM uni_student`;
-
-        return new Promise<dbm.IStudent[]>((resolve,reject) => {
-            this.pool.query(funcQuery, (err,result,fields) => {
-                err ? reject(err) : resolve(result);
-            });
-        });
-    }
-
-    addStudent(data:dbm.IStudent){
+    getClassEnrollments(){
         const funcQuery = `
-        INSERT INTO uni_student (firstname,lastname)
+        SELECT ce.studentid AS studentid, ce.classid AS classid,
+            s.firstname AS studentFirstName, s.lastname AS studentLastName,
+            c.name AS className,ce.id AS id
+        FROM uni_class_enrollment ce
+            INNER JOIN uni_class c ON ce.classid=c.id
+            INNER JOIN uni_student s ON ce.studentid=s.id
+        `;
+
+        return new Promise<APIModel.IClassEnrollmentView[]>((resolve,reject) => {
+            this.pool.query(funcQuery, (err,result,fields) => {
+                err ? reject(err) : resolve(result);
+            });
+        });
+    }
+
+    addClassEnrollment(data:dbm.IClassEnrollment){
+        const funcQuery = `
+        INSERT INTO uni_class_enrollment (studentid,classid)
             values(
-                ${this.cleanInput(data.firstname)}
-                ${this.cleanInput(data.lastname)}
+                ${this.cleanInput(data.studentid)}
+                ${this.cleanInput(data.classid)}
             );`;
 
         return new Promise<number>((resolve,reject)=>{
@@ -74,11 +86,8 @@ export class dbStudent {
         });
     }
 
-    updateStudent(target: dbm.IStudent){
-
+    DeleteClassEnrollment(target: dbm.IClassEnrollment){
+        
     }
 
-    deleteStudent(target: dbm.IStudent){
-
-    }
 }

@@ -23,8 +23,9 @@ export interface IStudentView extends dbm.IStudent {
 }
 
 export interface IClassEnrollmentView extends dbm.IClassEnrollment {
-    studentName:String;
-    ClassName:String;
+    studentFirstName:String;
+    studentLastName:String;
+    className:String;
 }
 
 export interface GenericOptions {

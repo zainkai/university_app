@@ -77,4 +77,22 @@ export class dbClass {
             });
         });
     }
+
+    addClass(data:dbm.IClass) {
+        const funcQuery =`
+        INSERT INTO uni_class (name,starttime,endtime,buildingid,departmentid)
+            values (${this.cleanInput(data.name)},
+                    ${this.cleanInput(data.starttime)},
+                    ${this.cleanInput(data.endtime)},
+                    ${this.cleanInput(data.buildingid)},
+                    ${this.cleanInput(data.departmentid)}
+            );
+        `;
+
+        return new Promise<number>((resolve,reject)=>{
+            this.pool.query(funcQuery,(err,result,fields)=> {
+                err ? reject(err) : resolve(result.insertId);
+            });
+        });
+    }
 }

@@ -75,7 +75,11 @@ export class dbStudent {
     }
 
     updateStudent(target: dbm.IStudent){
-
+        const funcQuery = `
+        UPDATE uni_student
+            SET firstname=${this.cleanInput(target.firstname)},
+                lastname=${this.cleanInput(target.lastname)}
+        WHERE id=${this.cleanInput(target.id)}`;
     }
 
     deleteStudent(target: dbm.IStudent){

@@ -19,3 +19,16 @@ export interface IClass {
     buildingid:number,
     departmentid:number
 }
+
+export interface IStudent {
+    id?:number,
+    firstname:string,
+    lastname:string,
+    fullname?:string
+}
+
+export interface IClassEnrollment {
+    id?:number,
+    studentid:number,
+    classid:number
+}

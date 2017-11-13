@@ -81,10 +81,20 @@ export class dbStudent {
                 lastname=${this.cleanInput(target.lastname)}
         WHERE id=${this.cleanInput(target.id)}`;
 
-
+        return new Promise<number>((resolve,reject)=>{
+            this.pool.query(funcQuery,(err,result,fields)=> {
+                err ? reject(err) : resolve(result.changedRows);
+            });
+        });
     }
 
     deleteStudent(target: dbm.IStudent){
         const funcQuery =`DELETE FROM uni_student WHERE id=${this.cleanInput(target.id)}`;
+
+        return new Promise<number>((resolve,reject)=>{
+            this.pool.query(funcQuery,(err,result,fields)=> {
+                err ? reject(err) : resolve(result.affectedRows);
+            });
+        });
     }
 }

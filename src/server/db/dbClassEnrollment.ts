@@ -86,8 +86,14 @@ export class dbClass {
         });
     }
 
-    DeleteClassEnrollment(target: dbm.IClassEnrollment){
-        
+    deleteClassEnrollment(target: dbm.IClassEnrollment){
+        const funcQuery = `DELETE FROM uni_student WHERE id=${this.cleanInput(target.id)}`;
+
+        return new Promise<number>((resolve,reject)=>{
+            this.pool.query(funcQuery,(err,result,fields)=> {
+                err ? reject(err) : resolve(result.affectedRows);
+            });
+        });
     }
 
 }

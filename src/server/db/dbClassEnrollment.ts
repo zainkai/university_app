@@ -87,8 +87,20 @@ export class dbClassEnrollment {
     }
 
     deleteClassEnrollment(target: dbm.IClassEnrollment){
-        const funcQuery = `DELETE FROM uni_student WHERE id=${this.cleanInput(target.id)}`;
+        const funcQuery = `DELETE FROM uni_class_enrollment WHERE id=${this.cleanInput(target.id)}`;
 
+        return new Promise<number>((resolve,reject)=>{
+            this.pool.query(funcQuery,(err,result,fields)=> {
+                err ? reject(err) : resolve(result.affectedRows);
+            });
+        });
+    }
+
+    deleteEnrollmentStudent(target: dbm.IStudent){
+        const funcQuery = `
+            DELETE FROM uni_class_enrollment 
+            WHERE studentid=${this.cleanInput(target.id)}`;
+        
         return new Promise<number>((resolve,reject)=>{
             this.pool.query(funcQuery,(err,result,fields)=> {
                 err ? reject(err) : resolve(result.affectedRows);

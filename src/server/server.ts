@@ -8,6 +8,7 @@ import { departmentRouter } from './routes/departmentRouter';
 import { buildingRouter } from './routes/buildingRouter';
 import { classRouter } from './routes/classRouter';
 import { studentRouter } from './routes/studentRouter';
+import { classEnrollmentRouter } from './routes/classEnrollmentRouter'
 
 const app = express();
 const server = (http as any).Server(app);
@@ -24,6 +25,7 @@ app.use('/department',departmentRouter);
 app.use('/building',buildingRouter);
 app.use('/class',classRouter);
 app.use('/student',studentRouter);
+app.use('/enrollment',classEnrollmentRouter);
 
 
 app.get('/', (req, res, next) => {

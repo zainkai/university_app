@@ -2,7 +2,7 @@ import * as mysql from 'mysql';
 import * as dbm from '../models/dbModel';
 import * as APIModel from '../models/APIModel';
 
-export class dbClass {
+export class dbClassEnrollment {
     pool:mysql.Pool;
     constructor(dbPool:mysql.Pool){
         this.pool = dbPool;

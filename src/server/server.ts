@@ -6,6 +6,8 @@ import { dbController } from './db/dbController';
 import { pool } from './db/protected/dbcon-dev';
 import { departmentRouter } from './routes/departmentRouter';
 import { buildingRouter } from './routes/buildingRouter';
+import { classRouter } from './routes/classRouter';
+import { studentRouter } from './routes/studentRouter';
 
 const app = express();
 const server = (http as any).Server(app);
@@ -20,6 +22,9 @@ app.engine('html', require('ejs').renderFile);
 //use routes
 app.use('/department',departmentRouter);
 app.use('/building',buildingRouter);
+app.use('/class',classRouter);
+app.use('/student',studentRouter);
+
 
 app.get('/', (req, res, next) => {
     res.render('index.html');

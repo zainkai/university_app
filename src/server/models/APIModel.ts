@@ -20,7 +20,7 @@ export interface StudentEnrollment {
 
 export interface IStudentView extends dbm.IStudent {
     classes?:IClassEnrollmentView[];
-    countClasses?:number;
+    classCount?:number;
 }
 
 export interface IClassEnrollmentView extends dbm.IClassEnrollment {

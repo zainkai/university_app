@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import { NavBarContainer } from './NavBarContainer';
 
 
 export interface Props {stuff:string};
@@ -11,7 +11,13 @@ export class IndexContainer extends React.Component<Props,{}> {
     
 
     render():JSX.Element{
-        return(<h1> working React thingy </h1>); 
+        return(
+            <div>
+                <NavBarContainer />
+                <h1> University App </h1>
+                <h3> Author: Kevin Turkington </h3>
+            </div>
+        ); 
     }
 }
 

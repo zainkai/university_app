@@ -21,14 +21,9 @@ export class DepartmentTable extends React.Component<Props,State> {
          this.updateNewestItems();
     }
 
-    
-
-    
-
     updateNewestItems(){
-
         getClient().then(data => {
-            console.log(data);
+            //console.log(data);
             this.setState({
                 newestItems:data,
                 filteredItems: data
@@ -38,13 +33,17 @@ export class DepartmentTable extends React.Component<Props,State> {
         });
     }
 
-    filterItems(){
-        let currentItems = this.state.newestItems;
+    filterItems(event:React.FormEvent<HTMLInputElement>){
+        console.log(event.currentTarget.value)
 
-        //apply filters
+        const searchName:string = event.currentTarget.value;
+        const newFilteredItems = this.state.newestItems.filter(i => 
+            i.name.toLowerCase().localeCompare(searchName.toLowerCase()) >= 0);
+
+        console.log(newFilteredItems)
 
         this.setState({
-            filteredItems: currentItems
+            filteredItems: newFilteredItems
         });
     }
 
@@ -86,6 +85,9 @@ export class DepartmentTable extends React.Component<Props,State> {
         return(
         <div>
             <button onClick={this.updateNewestItems.bind(this)}>Refresh</button>
+            <button onClick={this.updateNewestItems.bind(this)}>Add</button>
+
+            <input type="text" onChange={this.filterItems.bind(this)} />
             <table>
                 {this.renderTableHeader()}
                 {this.renderTableBody()}

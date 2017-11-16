@@ -19,15 +19,17 @@ export class DepartmentTable extends React.Component<Props,State> {
          this.updateNewestItems();
     }
 
-    getDepartmentsClient = ():Promise<IDepartment[]> => post('/departments')
+    getDepartmentsClient = ():Promise<IDepartment[]> => post('/department')
 
     updateNewestItems(){
         this.getDepartmentsClient().then(data => {
+            console.log(data);
             this.setState({
-                newestItems:data
+                newestItems:data,
+                filteredItems: data
             });
 
-            this.filterItems();
+            //this.filterItems();
         });
     }
 
@@ -54,15 +56,19 @@ export class DepartmentTable extends React.Component<Props,State> {
     }
 
     renderTableBody(){
-        const tags = this.state.filteredItems.map(fi => {
-            return(
-                <tr>
-                    <td>fi.id</td>
-                    <td>fi.name</td>
-                    <td>fi.description</td>
-                </tr>
-            );
-        });
+        let tags = [(<h1>loading...</h1>)];
+
+        if(this.state){ // there was loading errors without this
+            tags = this.state.filteredItems.map(fi => {
+                return(
+                    <tr>
+                        <td>{fi.id}</td>
+                        <td>{fi.name}</td>
+                        <td>{fi.description}</td>
+                    </tr>
+                );
+            });
+        }
 
         return(
             <tbody>

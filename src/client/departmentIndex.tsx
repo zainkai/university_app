@@ -8,9 +8,15 @@ import { DepartmentTable } from './department/departmentTable';
 export class IndexContainer extends React.Component<{},{}> {
     render():JSX.Element{
         return(
-            <div>
+            <div id="root-content">
                 <NavBarContainer />
-                <DepartmentTable />
+
+                <div id="root-header">
+                    <h1>University Departments</h1>
+                </div>
+                <div id="root-body">
+                    <DepartmentTable />
+                </div>
             </div>
         ); 
     }

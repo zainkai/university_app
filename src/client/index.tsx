@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as $ from 'jquery';
+
 
 
 export interface Props {stuff:string};
@@ -8,6 +8,7 @@ export class IndexContainer extends React.Component<Props,{}> {
     constructor(props:Props){
         super(props);
     }
+    
 
     render():JSX.Element{
         return(<h1> working React thingy </h1>); 

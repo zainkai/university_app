@@ -5,7 +5,10 @@
       "jsx": "react",
       "outDir": "../../public/js",
       "strictNullChecks": true,
-      "strict": true
+      "strict": true,
+      "lib": [
+        "es2015","dom"
+      ]
     },
     "include": [
       "./*.ts",

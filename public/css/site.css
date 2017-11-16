@@ -1,3 +1,14 @@
 body {
     margin:0;
+    background-color: #999999;
 }
+
+#root-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#root-body{}

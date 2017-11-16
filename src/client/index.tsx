@@ -7,10 +7,18 @@ import { NavBarContainer } from './NavBarContainer';
 export class IndexContainer extends React.Component<{},{}> {
     render():JSX.Element{
         return(
-            <div>
+            <div id="root-content">
                 <NavBarContainer />
-                <h1> University App </h1>
-                <h3> Author: Kevin Turkington </h3>
+                <div id="root-header">
+                    <h1> University App </h1>
+                    <h3> Author: Kevin Turkington </h3>
+                </div>
+                <div id="root-body">
+                    <h4>project repo: <a href="https://github.com/zainkai/university_app">https://github.com/zainkai/university_app</a></h4>
+                    <p>
+                        blah blah text
+                    </p>
+                </div>
             </div>
         ); 
     }

@@ -38,7 +38,9 @@ export class dbStudent {
 
     getStudent(id:number){
         const funcQuery = `
-        SELECT * FROM uni_student
+        SELECT *,
+            (SELECT COUNT(id) FROM uni_class_enrollment WHERE studentid=s.id) AS classCount
+        FROM uni_student
         WHERE id=${this.cleanInput(id)}
         `;
 
@@ -50,9 +52,13 @@ export class dbStudent {
     }
 
     getStudents(){
-        const funcQuery = `SELECT * FROM uni_student`;
+        const funcQuery = `
+        SELECT *,
+            (SELECT COUNT(id) FROM uni_class_enrollment WHERE studentid=s.id) AS classCount
+        FROM uni_student s
+        `;
 
-        return new Promise<dbm.IStudent[]>((resolve,reject) => {
+        return new Promise<APIModel.IStudentView[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
                 err ? reject(err) : resolve(result);
             });

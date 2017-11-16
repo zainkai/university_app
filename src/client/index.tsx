@@ -3,13 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { NavBarContainer } from './NavBarContainer';
 
 
-export interface Props {stuff:string};
-export class IndexContainer extends React.Component<Props,{}> {
-    constructor(props:Props){
-        super(props);
-    }
-    
 
+export class IndexContainer extends React.Component<{},{}> {
     render():JSX.Element{
         return(
             <div>
@@ -22,6 +17,6 @@ export class IndexContainer extends React.Component<Props,{}> {
 }
 
 ReactDOM.render(
-    <IndexContainer stuff={"asdasd"}/>,
+    <IndexContainer />,
     document.getElementById("root")
 );

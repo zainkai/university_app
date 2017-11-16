@@ -5,10 +5,12 @@ export class NavBarContainer extends React.Component<{},{}>{
         return(
         <nav>
             <div className="navImage">
-                <img src="./favicon.ico"/>
+                <a href="/">
+                    <img src="./favicon.ico"/>
+                </a>
             </div>
             <div className="navLinks">
-                <a href="#">Link 1</a>
+                <a href="/department">Departments</a>
                 <a href="#">Link 2</a>
                 <a href="#">Link 3</a>
             </div>

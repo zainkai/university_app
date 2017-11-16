@@ -4,12 +4,14 @@ import { NavBarContainer } from '../NavBarContainer';
 import { post } from '../Api';
 import { IDepartment } from '../models/dbModel';
 
+
 interface Props {};
 interface State {
     newestItems: IDepartment[];
     filteredItems: IDepartment[];
 };
 
+const getClient = ():Promise<IDepartment[]> => post<IDepartment[]>('/department');
 
 export class DepartmentTable extends React.Component<Props,State> {
     constructor(props:Props){
@@ -19,10 +21,13 @@ export class DepartmentTable extends React.Component<Props,State> {
          this.updateNewestItems();
     }
 
-    getDepartmentsClient = ():Promise<IDepartment[]> => post('/department')
+    
+
+    
 
     updateNewestItems(){
-        this.getDepartmentsClient().then(data => {
+
+        getClient().then(data => {
             console.log(data);
             this.setState({
                 newestItems:data,
@@ -56,12 +61,12 @@ export class DepartmentTable extends React.Component<Props,State> {
     }
 
     renderTableBody(){
-        let tags = [(<h1>loading...</h1>)];
+        let tags:JSX.Element[] = [];
 
         if(this.state){ // there was loading errors without this
             tags = this.state.filteredItems.map(fi => {
                 return(
-                    <tr>
+                    <tr key={fi.id}>
                         <td>{fi.id}</td>
                         <td>{fi.name}</td>
                         <td>{fi.description}</td>
@@ -80,6 +85,7 @@ export class DepartmentTable extends React.Component<Props,State> {
     render() {
         return(
         <div>
+            <button onClick={this.updateNewestItems.bind(this)}>Refresh</button>
             <table>
                 {this.renderTableHeader()}
                 {this.renderTableBody()}

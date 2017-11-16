@@ -7,6 +7,12 @@ import * as APIModel from '../models/APIModel';
 export const departmentRouter = express();
 const dbControl = new dbDepartment(pool);//exclusive to departments router
 
+//get
+departmentRouter.get('/', (req, res, next) => {
+    res.render('departments.html');
+});
+
+//post
 departmentRouter.post('/', (req, res, next) => {
     dbControl.getDepartments().then( data => res.json(data));
 });

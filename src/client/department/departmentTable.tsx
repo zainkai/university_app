@@ -65,7 +65,7 @@ export class DepartmentTable extends React.Component<Props,State> {
                 return(
                     <tr key={fi.id}>
                         <td>{fi.id}</td>
-                        <td>{fi.name}</td>
+                        <td>{fi.name.replace(/_/g," ")}</td>
                         <td>{fi.description}</td>
                     </tr>
                 );

@@ -38,7 +38,7 @@ export class DepartmentTable extends React.Component<Props,State> {
 
         const searchName:string = event.currentTarget.value;
         const newFilteredItems = this.state.newestItems.filter(i => 
-            i.name.toLowerCase().localeCompare(searchName.toLowerCase()) >= 0);
+            i.name.toLowerCase().indexOf(searchName.toLowerCase()) > -1);
 
         console.log(newFilteredItems)
 

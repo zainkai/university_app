@@ -34,13 +34,11 @@ export class DepartmentTable extends React.Component<Props,State> {
     }
 
     filterItems(event:React.FormEvent<HTMLInputElement>){
-        console.log(event.currentTarget.value)
+        //console.log(event.currentTarget.value)
 
         const searchName:string = event.currentTarget.value;
         const newFilteredItems = this.state.newestItems.filter(i => 
             i.name.toLowerCase().indexOf(searchName.toLowerCase()) > -1);
-
-        console.log(newFilteredItems)
 
         this.setState({
             filteredItems: newFilteredItems

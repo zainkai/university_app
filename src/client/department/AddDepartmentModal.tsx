@@ -23,7 +23,7 @@ export class AddDepartmentModal extends React.Component<Props,State>{
     }
 
     addNew(){
-
+        // TODO: make REGEX helper for null/whitespace/special characters
     }
 
 

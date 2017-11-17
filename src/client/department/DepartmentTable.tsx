@@ -81,11 +81,11 @@ export class DepartmentTable extends React.Component<Props,State> {
 
     render() {
         return(
-        <div>
-            <button onClick={this.updateNewestItems.bind(this)}>Refresh</button>
-            <button onClick={this.updateNewestItems.bind(this)}>Add</button>
-
-            <input type="text" onChange={this.filterItems.bind(this)} />
+        <div className="table-container">
+            <div className="table-controls">
+                <button onClick={this.updateNewestItems.bind(this)}>Refresh</button>
+                <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
+            </div>
             <table>
                 {this.renderTableHeader()}
                 {this.renderTableBody()}

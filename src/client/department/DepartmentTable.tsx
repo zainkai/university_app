@@ -10,7 +10,7 @@ interface State {
     filteredItems: IDepartment[];
 };
 
-const getClient = ():Promise<IDepartment[]> => post<IDepartment[]>('/department');
+const getClient = () => post<IDepartment[]>('/department');
 
 export class DepartmentTable extends React.Component<Props,State> {
     constructor(props:Props){

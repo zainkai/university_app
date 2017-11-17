@@ -8,9 +8,12 @@ interface Props {
     closeModalCB: ()=> void;
     isVisible:boolean;
 };
+
 interface State {
     newItem?: IDepartment;
 };
+
+const addClient = (newItem:IDepartment) => post<Number>('/department/add', newItem);
 
 export class AddDepartmentModal extends React.Component<Props,State>{
     constructor(props:Props){

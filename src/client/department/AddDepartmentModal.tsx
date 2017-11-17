@@ -28,7 +28,7 @@ export class AddDepartmentModal extends React.Component<Props,State>{
 
 
     //webpack:https://github.com/Mercateo/react-with-typescript/blob/master/webpack.config.js
-    inputHandler(e:React.FormEvent<HTMLInputElement>){
+    onChangeHandler(e:React.FormEvent<HTMLInputElement>){
         e.preventDefault();
         this.setState({[e.currentTarget.name]: e.currentTarget.value} as any);
     }
@@ -41,8 +41,8 @@ export class AddDepartmentModal extends React.Component<Props,State>{
                     <button onClick={this.toggleVisibility.bind(this)}>Close</button>
                 </div>
                 <div className="modal-body">
-                    <span>Name: <input type="text"/></span>
-                    <span>Description: <textarea></textarea></span>
+                    <span>Name: <input name='name' onChange={this.onChangeHandler.bind(this)} type="text"/></span>
+                    <span>Description: <textarea name='description' onChange={this.onChangeHandler.bind(this)}></textarea></span>
                     <button onClick={this.addNew.bind(this)}>Add Item</button>
                 </div>
             </div>

@@ -21,6 +21,10 @@ export class AddDepartmentModal extends React.Component<Props,State>{
         this.props.closeModalCB();
     }
 
+    addNew(){
+
+    }
+
     render(){
         return(
             <div className={"modal" + (this.props.isVisible ? " modal-show": " modal-hidden")}>
@@ -31,6 +35,7 @@ export class AddDepartmentModal extends React.Component<Props,State>{
                 <div className="modal-body">
                     <span>Name: <input type="text"/></span>
                     <span>Description: <textarea></textarea></span>
+                    <button onClick={this.addNew.bind(this)}>Add Item</button>
                 </div>
             </div>
         );

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { NavBarContainer } from '../NavBarContainer';
 import { post } from '../Api';
 import { IDepartment } from '../models/dbModel';
+import { AddDepartmentModal } from './AddDepartmentModal';
 
 
 interface Props {};
@@ -38,7 +37,8 @@ export class DepartmentTable extends React.Component<Props,State> {
 
         const searchName:string = event.currentTarget.value;
         const newFilteredItems = this.state.newestItems.filter(i => 
-            i.name.toLowerCase().indexOf(searchName.toLowerCase()) > -1);
+            i.name.replace(/_/g," ").toLowerCase()
+            .indexOf(searchName.toLowerCase()) > -1);
 
         this.setState({
             filteredItems: newFilteredItems

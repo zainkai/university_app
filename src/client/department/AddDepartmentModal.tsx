@@ -5,21 +5,35 @@ import { IDepartment } from '../models/dbModel';
 
 interface Props {
     refreshTableCB: () => void;
+    closeModalCB: ()=> void;
+    isVisible:boolean;
 };
 interface State {
     newItem?: IDepartment;
-    isVisible:boolean;
 };
 
 export class AddDepartmentModal extends React.Component<Props,State>{
     constructor(props:Props){
         super(props);
-
-        this.state =({
-            isVisible:false
-        });
     }
 
-    
+    toggleVisibility(){
+        this.props.closeModalCB();
+    }
+
+    render(){
+        return(
+            <div className={"modal" + (this.props.isVisible ? " modal-show": " modal-hidden")}>
+                <div className="modal-header">
+                    <h1>Add Department</h1>
+                    <button onClick={this.toggleVisibility.bind(this)}>Close</button>
+                </div>
+                <div className="modal-body">
+                    <span>Name: <input type="text"/></span>
+                    <span>Description: <textarea></textarea></span>
+                </div>
+            </div>
+        );
+    }
 }
 

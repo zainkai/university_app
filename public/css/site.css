@@ -12,3 +12,11 @@ body {
 }
 
 #root-body{}
+
+button{
+    height:2em;
+    background-color: #222222;
+    color: white;
+    border: 1px solid #222222;
+    border-radius: 5px;
+}

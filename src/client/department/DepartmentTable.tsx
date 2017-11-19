@@ -22,13 +22,11 @@ export class DepartmentTable extends React.Component<Props,State> {
 
     updateNewestItems(){
         getClient().then(data => {
-            //console.log(data);
+            console.log(data);
             this.setState({
                 newestItems:data,
                 filteredItems: data
             });
-
-            //this.filterItems();
         });
     }
 
@@ -83,7 +81,12 @@ export class DepartmentTable extends React.Component<Props,State> {
         return(
         <div className="table-container">
             <div className="table-controls">
-                <button onClick={this.updateNewestItems.bind(this)}>Refresh</button>
+                <div className="table-buttons">
+                    <button onClick={this.updateNewestItems.bind(this)}>Refresh</button><br/>
+                    <AddDepartmentModal 
+                        refreshTableCB={this.updateNewestItems.bind(this)}
+                    />
+                </div>
                 <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
             </div>
             <table>

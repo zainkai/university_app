@@ -1,0 +1,39 @@
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    background-color: white; /* Fallback color */
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:20px;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.modal-show{
+    display: block;
+}
+
+.modal-hidden{
+    display: none;
+}
+
+.modal-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal > button {
+    float:right;
+}
+
+.modal-body > button {
+    margin:1em;
+}

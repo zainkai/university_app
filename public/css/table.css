@@ -3,6 +3,7 @@
 .table-buttons{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin: 1em;
 }
 
@@ -14,16 +15,17 @@
 }
 
 .table-container {
-    background-color: white;
     padding: 1em;
-    border: 1px solid black;
-    border-radius: 10px;
+    /* border: 1px solid black;
+    background-color: white;
+    border-radius: 10px; */
 }
 
 .table-container > table {
     margin:1em;
     border: 1px solid #222222;
     border-radius: 5px;
+    background-color: white;
 }
 .table-container > table > tbody > tr:nth-child(odd) {
     background-color: #999999;

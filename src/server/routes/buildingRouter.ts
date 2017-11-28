@@ -8,6 +8,10 @@ import * as APIModel from '../models/APIModel';
 export const buildingRouter = express();
 const dbControl = new dbBuilding(pool);//exclusive to departments router
 
+buildingRouter.get('/',(req,res,next) => {
+    res.render('buildings.html');
+});
+
 buildingRouter.post('/', (req, res, next) => {
     dbControl.getBuildings().then( data => res.json(data));
 });

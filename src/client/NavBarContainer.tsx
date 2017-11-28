@@ -11,7 +11,7 @@ export class NavBarContainer extends React.Component<{},{}>{
             </div>
             <div className="navLinks">
                 <a href="/department">Departments</a>
-                <a href="#">Link 2</a>
+                <a href="/building">Buildings</a>
                 <a href="#">Link 3</a>
             </div>
         </nav>

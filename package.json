@@ -34,7 +34,8 @@
 
     "browser-idx":"browserify public/js/IndexPage.js -o public/js/IndexPage.js -d",
     "browser-dept":"browserify public/js/DepartmentPage.js -o public/js/DepartmentPage.js -d",
-    "browserify":"npm run browser-idx && npm run browser-dept",
+    "browser-building":"browserify public/js/BuildingPage.js -o public/js/BuildingPage.js -d",
+    "browserify":"npm run browser-idx && npm run browser-dept && npm run browser-building",
 
     "build-all": "npm run build-client && npm run build-server && npm run browserify",
     "test": "echo \"Error: no test specified\" && exit 1",

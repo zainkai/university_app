@@ -84,9 +84,9 @@ export class dbBuilding{
     listBuildingOptions(){
         const funcQuery = `SELECT id,name FROM uni_building`;
 
-        return new Promise<APIModel.BuildingOptions>((resolve,reject) => {
+        return new Promise<APIModel.BuildingOptions[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
-                err ? reject(err) : resolve(result.insertId);
+                err ? reject(err) : resolve(result);
             });
         });
     }

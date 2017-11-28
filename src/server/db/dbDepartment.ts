@@ -78,9 +78,9 @@ export class dbDepartment {
     listDepartmentOptions(){
         const funcQuery =`SELECT id,name FROM uni_department`;
 
-        return new Promise<APIModel.DepartmentOptions>((resolve,reject) => {
+        return new Promise<APIModel.DepartmentOptions[]>((resolve,reject) => {
             this.pool.query(funcQuery, (err,result,fields) => {
-                err ? reject(err) : resolve(result.insertId);
+                err ? reject(err) : resolve(result);
             });
         });
     }

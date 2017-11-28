@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { post } from '../Api';
 import { IBuildingsView } from '../models/ClientModel';
-//import { AddBuildingModal } from './AddBuildingModal';
+import { AddBuildingModal } from './AddBuildingModal';
 
 
 interface Props {};
@@ -81,12 +81,12 @@ export class BuildingTable extends React.Component<Props,State> {
         return(
         <div className="table-container">
             <div className="table-controls">
-                {/* <div className="table-buttons">
+                <div className="table-buttons">
                     <button onClick={this.updateNewestItems.bind(this)}>Refresh</button><br/>
-                    <AddDepartmentModal 
+                    <AddBuildingModal 
                         refreshTableCB={this.updateNewestItems.bind(this)}
                     />
-                </div> */}
+                </div>
                 <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
             </div>
             <table>

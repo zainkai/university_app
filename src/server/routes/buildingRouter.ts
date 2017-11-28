@@ -23,6 +23,9 @@ buildingRouter.post('/get', (req, res, next) => {
 
 buildingRouter.post('/add', (req, res, next) => {
     const incData:dbm.IBuilding = {...req.body};
+    incData.departmentid = Number(incData.departmentid);
+
+    console.log(incData);
 
     //error checking
     if (typeof(incData.name) !== 'string' ||

@@ -1,7 +1,7 @@
 import * as dbm from './dbModel';
 
 export interface IBuildingsView extends dbm.IBuilding {
-    departmentName:string;
+    departmentName?:string;
 };
 
 export interface IdRequest{

@@ -23,6 +23,8 @@ classRouter.post('/get',(req,res,next) => {
 
 classRouter.post('/add',(req,res,next) => {
     const incData:dbm.IClass = {...req.body};
+    incData.departmentid = Number(incData.departmentid);
+    incData.buildingid = Number(incData.buildingid);
 
     //error checking
     if (typeof(incData.name) !== 'string' ||

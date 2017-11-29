@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { post } from '../Api';
 import { IClassView } from '../models/ClientModel';
-// import { AddDepartmentModal } from './AddDepartmentModal';
+import { AddClassModal } from './AddClassModal';
 
 
 interface Props {};
@@ -89,9 +89,9 @@ export class ClassTable extends React.Component<Props,State> {
             <div className="table-controls">
                 <div className="table-buttons">
                     <button onClick={this.updateNewestItems.bind(this)}>Refresh</button><br/>
-                    {/* <AddDepartmentModal 
+                    <AddClassModal 
                         refreshTableCB={this.updateNewestItems.bind(this)}
-                    /> */}
+                    />
                 </div>
                 <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
             </div>

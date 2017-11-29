@@ -7,6 +7,11 @@ import * as APIModel from '../models/APIModel';
 export const classRouter = express();
 const dbControl = new dbClass(pool);//exclusive to departments router
 
+
+classRouter.get('/', (req, res, next) => {
+    res.render('classes.html');
+});
+
 classRouter.post('/' ,(req,res,next) => {
     dbControl.getClasses().then(data => res.json(data));
 });

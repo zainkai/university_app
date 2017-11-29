@@ -14,8 +14,8 @@ export interface IBuilding {
 export interface IClass {
     id?:number,
     name:string,
-    starttime:string,
-    endtime:string,
+    starttime?:string,
+    endtime?:string,
     buildingid:number,
     departmentid:number
 }

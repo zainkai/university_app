@@ -13,6 +13,7 @@ export class NavBarContainer extends React.Component<{},{}>{
                 <a href="/department">Departments</a>
                 <a href="/building">Buildings</a>
                 <a href="/class">Classes</a>
+                <a href="/student">Students</a>
             </div>
         </nav>
         );

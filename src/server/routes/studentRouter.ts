@@ -8,6 +8,10 @@ import { json } from 'express';
 export const studentRouter = express();
 const dbControl = new dbStudent(pool);
 
+studentRouter.get('/', (req, res, next) => {
+    res.render('students.html');
+});
+
 studentRouter.post('/',(req,res,next) => {
     dbControl.getStudents().then(data => res.json(data));
 });

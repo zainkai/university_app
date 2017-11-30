@@ -36,7 +36,8 @@
     "browser-dept":"browserify public/js/DepartmentPage.js -o public/js/DepartmentPage.js -d",
     "browser-building":"browserify public/js/BuildingPage.js -o public/js/BuildingPage.js -d",
     "browser-class":"browserify public/js/ClassPage.js -o public/js/ClassPage.js -d",
-    "browserify":"npm run browser-idx && npm run browser-dept && npm run browser-building && npm run browser-class",
+    "browser-student":"browserify public/js/StudentPage.js -o public/js/StudentPage.js -d",
+    "browserify":"npm run browser-idx && npm run browser-dept && npm run browser-building && npm run browser-class && npm run browser-student",
 
     "build-all": "npm run build-client && npm run build-server && npm run browserify",
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -51,7 +51,7 @@ export class AddStudentModal extends React.Component<Props,State>{
                 <div className={"modal " + (this.state.isVisible ? "modal-show" : "modal-hidden")}>
                     <button onClick={this.toggleVisibility.bind(this)}>Close</button>
                     <div className="modal-header">
-                        <h1>Add Building</h1>
+                        <h1>Add Student</h1>
                     </div>
                     <div className="modal-body">
                         <label>First Name:</label> <input name='firstname' onChange={this.onChangeHandler.bind(this)} type="text"/>

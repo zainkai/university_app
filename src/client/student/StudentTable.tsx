@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { post } from '../Api';
 import { IStudentView } from '../models/ClientModel';
-//import { AddBuildingModal } from './AddBuildingModal';
+import { AddStudentModal } from './AddStudentModal';
 
 
 interface Props {};
@@ -85,9 +85,9 @@ export class StudentTable extends React.Component<Props,State> {
             <div className="table-controls">
                 <div className="table-buttons">
                     <button onClick={this.updateNewestItems.bind(this)}>Refresh</button><br/>
-                    {/* <AddBuildingModal 
+                    <AddStudentModal 
                         refreshTableCB={this.updateNewestItems.bind(this)}
-                    /> */}
+                    />
                 </div>
                 <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
             </div>

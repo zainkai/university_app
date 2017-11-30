@@ -40,7 +40,7 @@ export class dbStudent {
         const funcQuery = `
         SELECT *,
             (SELECT COUNT(id) FROM uni_class_enrollment WHERE studentid=s.id) AS classCount
-        FROM uni_student
+        FROM uni_student s
         WHERE id=${this.cleanInput(id)}
         `;
 
@@ -69,7 +69,7 @@ export class dbStudent {
         const funcQuery = `
         INSERT INTO uni_student (firstname,lastname)
             values(
-                ${this.cleanInput(data.firstname)}
+                ${this.cleanInput(data.firstname)},
                 ${this.cleanInput(data.lastname)}
             );`;
 

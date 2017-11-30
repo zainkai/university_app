@@ -7,6 +7,10 @@ import * as APIModel from '../models/APIModel';
 export const classEnrollmentRouter = express();
 const dbControl = new dbClassEnrollment(pool);//exclusive to departments router
 
+classEnrollmentRouter.get('/', (req, res, next) => {
+    res.render('enrollments.html');
+});
+
 classEnrollmentRouter.post('/',(req,res,next)=> {
     dbControl.getClassEnrollments().then(data => res.json(data));
 });

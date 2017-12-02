@@ -21,7 +21,8 @@
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1",
     "jquery":"^3.2.1",
-    "mysql":"^2.15.0"
+    "mysql":"^2.15.0",
+    "forever": "^0.15.3"
     
   },
   "devDependencies": {

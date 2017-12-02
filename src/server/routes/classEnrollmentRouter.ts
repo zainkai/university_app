@@ -51,6 +51,7 @@ classEnrollmentRouter.post('/delete',(req,res,next) => {
 //if deleting a student use this first
 classEnrollmentRouter.post('/deleteenrollment',(req,res,next)=> {
     const incData:dbm.IStudent = {...req.body};
+    incData.id = Number(incData.id);
 
     if (typeof(incData.id) !== 'number'){
         return res.status(400).json({'error':'invalid data recieved'});

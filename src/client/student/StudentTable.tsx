@@ -2,7 +2,8 @@ import * as React from 'react';
 import { post } from '../Api';
 import { IStudentView } from '../models/ClientModel';
 import { AddStudentModal } from './AddStudentModal';
-import { UpdateStudentModal } from './UpdateStudentModal'
+import { UpdateStudentModal } from './UpdateStudentModal';
+import { DeleteStudentModal } from './DeleteStudentModal';
 
 
 interface Props {};
@@ -12,6 +13,7 @@ interface State {
 
     student?:IStudentView;
     isVisibleUpdateModal:boolean;
+    isVisibleDeleteModal:boolean;
 };
 
 const getClient = () => post<IStudentView[]>('/student');
@@ -22,6 +24,7 @@ export class StudentTable extends React.Component<Props,State> {
 
         this.state = {
             isVisibleUpdateModal: false,
+            isVisibleDeleteModal:false,
             newestItems:[],
             filteredItems:[]
         };
@@ -55,16 +58,29 @@ export class StudentTable extends React.Component<Props,State> {
         });
     }
 
-    updateStudentId(e:React.MouseEvent<HTMLButtonElement>){
+    updateStudent(e:React.MouseEvent<HTMLButtonElement>){
         const id = Number(e.currentTarget.value);
         const updateStudent = this.state.newestItems.find(s => s.id === id);
 
         this.setState({student: updateStudent, isVisibleUpdateModal:true});
     }
 
+    deleteStudent(e:React.MouseEvent<HTMLButtonElement>){
+        const id = Number(e.currentTarget.value);
+        const updateStudent = this.state.newestItems.find(s => s.id === id);
+
+        this.setState({student: updateStudent, isVisibleDeleteModal:true});
+    }
+
     closeUpdateModalVis(){
         this.setState({
             isVisibleUpdateModal:false, student:undefined
+        });
+    }
+
+    closeDeleteModalVis(){
+        this.setState({
+            isVisibleDeleteModal:false, student:undefined
         });
     }
 
@@ -76,6 +92,7 @@ export class StudentTable extends React.Component<Props,State> {
                     <th>name</th>
                     <th># Classes Enrolled</th>
                     <th>{/*update*/}</th>
+                    <th>{/*enrolled class*/}</th>
                     <th>{/*delete*/}</th>
                 </tr>
             </thead>
@@ -94,10 +111,13 @@ export class StudentTable extends React.Component<Props,State> {
                         <td>{name.replace(/_/g," ")}</td>
                         <td>{fi.classCount}</td>
                         <td>
-                            <button value={fi.id} onClick={this.updateStudentId.bind(this)}>update</button>
+                            <button value={fi.id} onClick={this.updateStudent.bind(this)}>update</button>
                         </td>
                         <td>
-                            <button>delete</button>
+                            <button >classes</button>
+                        </td>
+                        <td>
+                            <button value={fi.id} onClick={this.deleteStudent.bind(this)}>delete</button>
                         </td>
                     </tr>
                 );
@@ -126,7 +146,12 @@ export class StudentTable extends React.Component<Props,State> {
                         closeModal={this.closeUpdateModalVis.bind(this)}
                         student={this.state.student}
                     />
-                    
+                    <DeleteStudentModal 
+                        refreshTableCB={this.updateNewestItems.bind(this)}
+                        isVisible={this.state.isVisibleDeleteModal}
+                        closeModal={this.closeDeleteModalVis.bind(this)}
+                        student={this.state.student}
+                    />
                 </div>
                 <span>Search Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
             </div>

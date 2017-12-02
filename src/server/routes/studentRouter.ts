@@ -63,6 +63,7 @@ studentRouter.post('/update',(req,res,next) => {
 //use delete all students class enrollment before this function.
 studentRouter.post('/delete',(req,res,next)=> {
     const incData:dbm.IStudent = {...req.body};
+    incData.id = Number(incData.id);
     
     if (typeof(incData.firstname) !== 'string' ||
         typeof(incData.lastname) !== 'string' ){

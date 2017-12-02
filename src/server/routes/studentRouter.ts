@@ -18,6 +18,14 @@ studentRouter.post('/',(req,res,next) => {
 
 studentRouter.post('/get',(req,res,next) => {
     const incData:APIModel.IdRequest = {...req.body};
+    incData.id = Number(incData.id);
+
+    if(typeof(incData.id) !== 'number'){
+        return res.status(400).json({'error':'invalid data recieved'});
+    }
+
+
+    console.log(incData);
     
     //note: promise.all doesnt work well with funcs that can possibly fail
     dbControl.getStudent(incData.id).then(data =>

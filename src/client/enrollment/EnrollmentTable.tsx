@@ -12,7 +12,6 @@ interface State {
     filteredItems: IClassEnrollmentView[];
 
     item?:IClassEnrollmentView;
-    isVisibleUpdateModal:boolean;
     isVisibleDeleteModal:boolean;
 };
 
@@ -23,7 +22,6 @@ export class EnrollmentTable extends React.Component<Props,State> {
         super(props);
 
         this.state = {
-            isVisibleUpdateModal: false,
             isVisibleDeleteModal:false,
             newestItems:[],
             filteredItems:[]
@@ -39,7 +37,6 @@ export class EnrollmentTable extends React.Component<Props,State> {
             this.setState({
                 newestItems:data,
                 filteredItems: data,
-                isVisibleUpdateModal:false
             });
         });
     }

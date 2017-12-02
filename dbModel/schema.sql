@@ -37,5 +37,6 @@ CREATE TABLE `uni_class_enrollment` (
     `studentid` INT NOT NULL,
     `classid` INT NOT NULL,
     FOREIGN KEY(`studentid`) REFERENCES `uni_student`(`id`),
-    FOREIGN KEY(`classid`) REFERENCES `uni_class`(`id`)
+    FOREIGN KEY(`classid`) REFERENCES `uni_class`(`id`),
+    CONSTRAINT UNIQUE (`studentid`,`classid`)
 ) ENGINE=InnoDB;

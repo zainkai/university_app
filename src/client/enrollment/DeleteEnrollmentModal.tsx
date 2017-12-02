@@ -1,28 +1,29 @@
 import * as React from 'react';
 import { post } from '../Api';
-import { IStudentView, IdRequest } from '../models/ClientModel';
+import { IStudentView, IdRequest, IClassEnrollmentView } from '../models/ClientModel';
+import { IClassEnrollment } from '../models/dbModel';
 
 
 interface Props {
     refreshTableCB: () => void;
     closeModal: () => void;
     isVisible:boolean;
-    student?:IStudentView;
+    item?:IClassEnrollmentView;
 };
 
-interface State extends IStudentView{ };
+interface State extends IClassEnrollment{ };
 
-const DeleteClientEnrollment = (newItem:IStudentView) => post<Number>('/enrollment/deleteenrollment', newItem);
-const DeleteClientStudent = (s:IStudentView) => post<Number>('/student/delete', s);
+const DeleteClientEnrollment = (item:IClassEnrollment) => post<Number>('/enrollment/delete', item).catch(err => alert(err));
 
-export class DeleteStudentModal extends React.Component<Props,State>{
+export class DeleteEnrollmentModal extends React.Component<Props,State>{
     constructor(props:Props){
         super(props);    
         
 
-        if(this.props.student){
+        if(this.props.item){
             this.state = {
-                ...(this.props.student)
+                classid:this.props.item.classid,
+                studentid:this.props.item.studentid
             }
         }
         this.state = {
@@ -36,17 +37,15 @@ export class DeleteStudentModal extends React.Component<Props,State>{
 
     DeleteStudent(){
         // TODO: make REGEX helper for null/whitespace/special characters
-        const studentid = this.props.student ? this.props.student.id : undefined;
+        const studentid = this.props.item ? this.props.item.id : undefined;
 
-        if(this.props.student){
+        if(this.props.item){
             let newItem = {
-                ...this.props.student
+                ...this.props.item
             }
             DeleteClientEnrollment(newItem).then((affectRows) => {
-                DeleteClientStudent(newItem).then((affectRows) => {
                     this.props.refreshTableCB();
                     this.toggleVisibility();
-                });
             });
         }
     }
@@ -61,7 +60,7 @@ export class DeleteStudentModal extends React.Component<Props,State>{
                         <button onClick={this.toggleVisibility.bind(this)}>Close</button>
                         <div className="modal-header">
                             <h1>Delete Enrollment</h1>
-                            <h3>{this.props.student ? `Deleting: ${this.props.student.firstname} ${this.props.student.lastname}` : ""}</h3>
+                            <h3>{this.props.item ? `Deleting: ${this.props.item.studentFirstName} ${this.props.item.studentLastName} from ${this.props.item.className}` : ""}</h3>
                         </div>
                         <div className="modal-body">
                             <h4>Are you sure??</h4>

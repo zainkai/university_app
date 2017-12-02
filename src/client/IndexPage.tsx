@@ -14,9 +14,9 @@ export class IndexContainer extends React.Component<{},{}> {
                     <h3> Author: Kevin Turkington </h3>
                 </div>
                 <div id="root-body">
-                    <h4>project repo: <a href="https://github.com/zainkai/university_app">https://github.com/zainkai/university_app</a></h4>
+                    <h4>Project repo: <a href="https://github.com/zainkai/university_app">https://github.com/zainkai/university_app</a></h4>
                     <p>
-                        blah blah text
+                        CS340 final project
                     </p>
                 </div>
             </div>

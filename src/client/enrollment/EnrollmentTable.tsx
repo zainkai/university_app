@@ -3,7 +3,7 @@ import { post } from '../Api';
 import { IClassEnrollmentView } from '../models/ClientModel';
 // import { AddStudentModal } from './AddStudentModal';
 // import { UpdateStudentModal } from './UpdateStudentModal';
-// import { DeleteStudentModal } from './DeleteStudentModal';
+import { DeleteEnrollmentModal } from './DeleteEnrollmentModal';
 
 
 interface Props {};
@@ -55,18 +55,21 @@ export class EnrollmentTable extends React.Component<Props,State> {
         });
     }
 
-    // deleteStudent(e:React.MouseEvent<HTMLButtonElement>){
-    //     const id = Number(e.currentTarget.value);
-    //     const updateStudent = this.state.newestItems.find(s => s.id === id);
+    deleteEnrollment(e:React.MouseEvent<HTMLButtonElement>){
+        const id = (e.currentTarget.value).split(',');
+        const sid = Number(id[0]);
+        const cid = Number(id[1]);
 
-    //     this.setState({item: updateStudent, isVisibleDeleteModal:true});
-    // }
+        const newItem = this.state.newestItems.find(s => s.classid === cid && s.studentid === sid);
 
-    // closeUpdateModalVis(){
-    //     this.setState({
-    //         isVisibleUpdateModal:false, student:undefined
-    //     });
-    // }
+        this.setState({item: newItem, isVisibleDeleteModal:true});
+    }
+
+    closeDeleteModalVis(){
+        this.setState({
+            isVisibleDeleteModal:false, item:undefined
+        });
+    }
 
 
     renderTableHeader(){
@@ -76,6 +79,7 @@ export class EnrollmentTable extends React.Component<Props,State> {
                     <th>id</th>
                     <th>Student Name</th>
                     <th>Class Name</th>
+                    <th>{/*Delete*/}</th>
                 </tr>
             </thead>
         );
@@ -92,6 +96,9 @@ export class EnrollmentTable extends React.Component<Props,State> {
                         <td>{fi.id}</td>
                         <td>{name.replace(/_/g," ")}</td>
                         <td>{fi.className.replace(/_/g," ")}</td>
+                        <td>
+                            <button value={`${fi.studentid},${fi.classid}`} onClick={this.deleteEnrollment.bind(this)}>Delete</button>
+                        </td>
                     </tr>
                 );
             });
@@ -110,17 +117,15 @@ export class EnrollmentTable extends React.Component<Props,State> {
             <div className="table-controls">
                 <div className="table-buttons">
                     <button onClick={this.updateNewestItems.bind(this)}>Refresh</button><br/>
-                    {/* <AddStudentModal 
-                        refreshTableCB={this.updateNewestItems.bind(this)}
-                    /> */}
-                    {/* <DeleteStudentModal 
+                    <DeleteEnrollmentModal 
                         refreshTableCB={this.updateNewestItems.bind(this)}
                         isVisible={this.state.isVisibleDeleteModal}
                         closeModal={this.closeDeleteModalVis.bind(this)}
-                        student={this.state.student}
-                    /> */}
+                        item={this.state.item}
+                    />
                 </div>
                 <span>Search Student Name:<input type="text" onChange={this.filterItems.bind(this)} /></span>
+                <h5>*Adding enrollments can only occur on student page.*</h5>
             </div>
             <table>
                 {this.renderTableHeader()}

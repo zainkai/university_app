@@ -39,7 +39,9 @@ classEnrollmentRouter.post('/add',(req,res,next)=> {
 
 classEnrollmentRouter.post('/delete',(req,res,next) => {
     const incData:dbm.IClassEnrollment = {...req.body};
-    
+    incData.classid = Number(incData.classid);
+    incData.studentid = Number(incData.studentid);
+
     //error checking
     if(typeof(incData.classid) !== 'number' ||
         typeof(incData.studentid) !== 'number'){

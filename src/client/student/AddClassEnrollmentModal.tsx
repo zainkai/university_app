@@ -15,7 +15,7 @@ interface State extends IClassEnrollment{
     avaliableOptions:IClassView[];
  };
 
-const updateClient = (newItem:IClassEnrollment) => post<Number>('/enrollment/add', newItem);
+const addClient = (newItem:IClassEnrollment) => post<Number>('/enrollment/add', newItem).catch(err => alert("duplicate enrollment"));
 const optionsClient = () => post<IClassView[]>('/class/options');
 
 export class AddClassEnrollmentModal extends React.Component<Props,State>{
@@ -61,7 +61,7 @@ export class AddClassEnrollmentModal extends React.Component<Props,State>{
         }
 
         console.log(newItem);
-        updateClient(newItem).then((id)=> {
+        addClient(newItem).then((id)=> {
             this.props.refreshTableCB();
             this.toggleVisibility();
         });

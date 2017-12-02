@@ -75,7 +75,7 @@ export class dbClassEnrollment {
         const funcQuery = `
         INSERT INTO uni_class_enrollment (studentid,classid)
             values(
-                ${this.cleanInput(data.studentid)}
+                ${this.cleanInput(data.studentid)},
                 ${this.cleanInput(data.classid)}
             );`;
 
